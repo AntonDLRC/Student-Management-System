@@ -26,12 +26,14 @@
 .two-column {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3em;
+    gap: 20em;
     padding: 1em;
 }
 
 .two-column img {
-    width: 50%;
-    
-
+    width: 65%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
 }
