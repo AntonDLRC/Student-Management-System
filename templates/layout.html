@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Don't forget to link css to html and add the w3.css-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="w3-bar w3-black">
+        <h1><a href="/" class="w3-bar-item w3-button" >Home</a></h1>
+        <h1><a href="/admin" class="w3-bar-item w3-button" >Admin</a></h1>
+    </nav>
+
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

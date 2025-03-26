@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h1>Admin Page</h1>
+  <div class="six-column">
+    {% for student in results %} 
+    <a href="{{ url_for('student', id=student[0]) }}">
+      <div class="w3-card-4">   
+          <img src="{{ student[2] }}" alt="{{ student[1] }}">
+          <h2> {{ student[1] }}</h2>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+ 
+{% endblock %}
