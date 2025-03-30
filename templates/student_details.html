@@ -2,12 +2,16 @@
 {% block body %}
 
 <div class="two-column">
-    <img src="{{ student[5][5] }}" alt="{{ student[1][1] }}">
-    <div class="info">
-        <h1> {{ student[1][1] }} </h1>
+    <div class="w3-card-4">
+        <img src="{{ student[5][5] }}" alt="{{ student[1][1] }}">
+    </div>
+    <div class="info w3-card-4">
+        <h1>{{ student[1][1] }}</h1>
+        <h1>Age: {{ student[2][2] }}</h1>
+        <h1>Year: {{ student[3][3] }}</h1>
         {% for course in student %}
-        <h2> Course: {{ course[10] }} </h2>
-        <h3> Teacher: {{ course[11] }} </h3>
+        <h3>Course: {{ course[10] }}</h3>
+        <h3>Teacher: {{ course[11] }}</h3>
         {% endfor %}
     </div>
 </div>
