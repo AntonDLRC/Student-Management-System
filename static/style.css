@@ -49,12 +49,66 @@ body,h1,h2,h3,h4,h5,h6 {font-family: Poppins, sans-serif;}
     transform: translate(-50%, -50%);
 }
 
-.two-column .info {
-    text-align: center;
+/* student info table css */
+
+.two-column .student-info-table table {
+    position: relative;
+    text-align: left;
+    line-height: 2;
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    font-size: 22px;
+    
+}
+
+.two-column .student-info-table th {
+    font-weight: 900;
+    background-color: #f2f2f2;
+    padding-left: 15px;
+
+}
+
+.two-column .student-info-table td {
+    padding-left: 15px;
+    font-weight: normal;
+}
+
+/* courses table css */
+
+.two-column .info .courses-table {
     line-height: 1;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 
 
+
+.two-column .info .courses-table table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.two-column .info .courses-table th {
+    background-color: #f2f2f2;
+    font-weight: 900;
+}
+
+.two-column .info .courses-table td {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.two-column .info.w3-card-4 .courses-table table {
+    width: 100%;
+    border-collapse: collapse;
+   
+   
+}
 
 
 
