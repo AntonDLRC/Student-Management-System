@@ -25,8 +25,11 @@ INSERT INTO StudentCourses (StudentID, CourseID) VALUES
 (7, 101), (7, 102), (7, 104), (7, 105), (7, 107), (7, 108),
 (8, 102), (8, 103), (8, 104), (8, 105), (8, 106), (8, 109),
 (9, 101), (9, 103), (9, 105), (9, 107), (9, 108), (9, 110),
-(10, 102), (10, 103), (10, 104), (10, 106), (10, 108), (10, 110);
-
+(10, 102), (10, 103), (10, 104), (10, 106), (10, 108), (10, 110),
+(11, 103), (11, 104), (11, 105), (11, 106), (11, 108), (11, 109),
+(12, 101), (12, 104), (12, 105), (12, 108), (12, 109), (12, 110),
+(13, 101), (13, 102), (13, 103), (13, 104), (13, 105), (13, 106),
+(14, 101), (14, 102), (14, 103), (14, 104), (14, 105), (14, 106);
 
 SELECT * FROM Courses;
 
@@ -34,7 +37,7 @@ SELECT * FROM Courses;
 SELECT * FROM Students 
  JOIN StudentCourses ON StudentCourses.StudentID = Students.ID
  JOIN Courses ON Courses.ID = StudentCourses.CourseID 
- WHERE Students.ID = 1;
+ WHERE Students.ID = 11;
 
  --- Students with their name and image ---
  SELECT Students.Name, Students.Image FROM Students;
