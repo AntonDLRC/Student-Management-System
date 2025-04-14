@@ -1,5 +1,8 @@
 -- database: ./database.db
 
+--- creating users table ---
+CREATE TABLE User (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT); 
+
 --- Courses database ---
 INSERT INTO Courses (CourseName, Teacher) VALUES
 ('Mathematics', 'Mr. Johnson'),
@@ -31,6 +34,7 @@ INSERT INTO StudentCourses (StudentID, CourseID) VALUES
 (13, 101), (13, 102), (13, 103), (13, 104), (13, 105), (13, 106),
 (14, 101), (14, 102), (14, 103), (14, 104), (14, 105), (14, 106);
 
+
 SELECT * FROM Courses;
 
 --- Students with their courses ---
@@ -41,3 +45,4 @@ SELECT * FROM Students
 
  --- Students with their name and image ---
  SELECT Students.Name, Students.Image FROM Students;
+
