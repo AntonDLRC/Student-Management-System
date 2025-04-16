@@ -3,7 +3,11 @@ import sqlite3
 #super cool functions to generate and check password password hashes
 from werkzeug.security import generate_password_hash, check_password_hash
 
+#create app
 app = Flask(__name__)
+
+#secret key is needed for sessions and flash messages
+app.config['SECRET_KEY'] = "MySecretKey"
 
 DATABASE = "database.db"
 
@@ -40,17 +44,20 @@ def student(id):
                                   # have multiple rows
     return render_template("student_details.html", student = result)
 
-# signup page
+# signup page - when a user signup, their username and password are stored in the database and the password is hashed
 @app.route("/signup", methods = ["GET", "POST"])
 def signup():
     if request.method == "POST":
-        username = request.form("username")
-        password = request.form("password")
+        username = request.form["username"]
+        password = request.form["password"]
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=16)
         sql = "INSERT INTO User (username, password) VALUES (?, ?);"
         query_db(sql, (username, hashed_password))
         # flash to show that the account was created
         flash("Account created successfully!")
+    return render_template("signup.html")
+
+# login page 
 
 
 if __name__ == "__main__":
