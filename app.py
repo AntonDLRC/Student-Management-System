@@ -58,9 +58,26 @@ def signup():
     return render_template("signup.html")
 
 # login page 
+@app.route("/login", methods = ["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        sql = "SELECT * FROM User WHERE username = ?"
+        user = query_db(sql=sql, args=(username,), one=True)
+        if user:
+            if check_password_hash(user[2], password):
+                #this store the username in the session
+                session['user'] = user
+                flash("Logged In Succesfully!")
+            else:
+                flash("Password is incorrect")
+        else:
+            flash("The username does not exist")
+    return render_template("home.html")
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5090)
+    app.run(debug=True, port=5190)
 
 
