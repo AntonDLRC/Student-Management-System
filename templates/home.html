@@ -6,8 +6,31 @@
 
 <button class="btn">Learn More</button>
 
-<button class="btn"><a href="{{ url_for('signup') }}">Sign Up</a></button>
 
+
+<h1> Login </h1>
+
+<div class ="login">
+        <form action="/login" method="post">
+            <div>
+                <label for="username"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" required>
+            </div>
+            <div>
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+            </div>
+            <div class = "remember_me">
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+                <!-- Forgot Password -->
+                <span class="password">Forgot <a href="#">password?</a></span>
+            </div>
+            <button type="submit">Login</button>
+            <p> Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></button> </p>
+        </form>
+</div>
 
 
 
