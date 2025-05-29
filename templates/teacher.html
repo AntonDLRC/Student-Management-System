@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h1>Teacher Page</h1>
+
+{% if session['user'] %}
+<!-- the whole user tuple is stored in the session this time- so it's id,username,passwordhash is available to us at all times -->
+    <p>Welcome {{ session['user'][1] }}</p>
+{% endif %}
+
+{% endblock %}
