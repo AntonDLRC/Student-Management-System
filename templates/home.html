@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
 
+<h1>My Awesome Site</h1>
+{% if session['user'] %}
+<!-- the whole user tuple is stored in the session this time- so it's id,username,passwordhash is available to us at all times -->
+    <p>Welcome {{ session['user'][1] }}</p>
+{% endif %}
 
 <!--<div class="slideshow"> -->
 
@@ -20,15 +25,8 @@
                 <label for="password"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" required>
             </div>
-            <div class = "remember_me">
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
-                <!-- Forgot Password -->
-                <span class="password">Forgot <a href="#">password?</a></span>
-            </div>
             <button type="submit">Login</button>
-            <p> Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></button> </p>
+        
         </form>
 </div>
 
