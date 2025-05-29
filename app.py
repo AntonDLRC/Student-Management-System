@@ -24,9 +24,48 @@ def query_db(sql, args=(), one=False):
 # admin page
 @app.route("/admin")
 def admin():
-    sql = "SELECT Students.ID, Students.Name, Students.Image FROM Students;"
-    results = query_db(sql)
-    return render_template("admin.html", results = results)
+    # Check if the user is logged in and is an admin
+    if 'user' in session and session['user']['role'] == "admin":
+        sql = "SELECT Students.ID, Students.Name, Students.Image FROM Students;"
+        results = query_db(sql)
+        return render_template("admin.html", results = results)
+    else:
+        flash("You do not have permission to access this page.")
+        return redirect("/")
+    
+# teacher page
+@app.route("/teacher/<int:id>")
+def teacher(id):
+    # Check if the user is logged in and is the correct teacher
+    if 'user' in session and session['user']['role'] == "teacher" and session['user']['id'] == id:
+        # Fetch students grouped by year levels assigned to this teacher
+        sql_students_by_year = """
+            SELECT Students.ID, Students.Name, Students.Age, Students.Year, Students.Image, YearLevels.Year
+            FROM Students
+            JOIN StudentCourses ON Students.ID = StudentCourses.StudentID
+            JOIN Courses ON StudentCourses.CourseID = Courses.ID
+            JOIN YearLevels ON Courses.YearLevelID = YearLevels.ID
+            WHERE Courses.TeacherID = ?
+        """
+        students_by_year = query_db(sql_students_by_year, (id,))
+
+        # Organize students into columns by year
+        students_by_year_column = {}
+        for student in students_by_year:
+            year = student[-1]  # Year is the last column
+            if year not in students_by_year_column:
+                students_by_year_column[year] = []
+            students_by_year_column[year].append(student)
+
+        # Pass the teacher session data and students to the template
+        return render_template(
+            "teacher.html",
+            teacher=session['user'],  # Pass the teacher data from the session
+            students_by_year_column=students_by_year_column  # Students grouped by year
+        )
+    else:
+        flash("You are not authorized to access this page.")
+        return redirect("/")
 
 # home page
 @app.route("/")
@@ -67,9 +106,23 @@ def login():
         user = query_db(sql=sql, args=(username,), one=True)
         if user:
             if check_password_hash(user[2], password):
+                # Overwrite session data with the logged-in user's information
+                session.clear()  # Clear any existing session data
                 #this store the username in the session
-                session['user'] = user
+                session['user'] = { 
+                    'id': user[0], 
+                    'username': user[1],
+                    'role': user[3] 
+                    }
+                print("Session set:", session)  # Debugging: Check session after login
                 flash("Logged In Succesfully!")
+                #redirect based on role
+                if user[3] == "admin":
+                    return redirect("/admin")
+                elif user[3] == "teacher":
+                    return redirect(f"/teacher/{user[0]}") # Redirect to teacher's dashboard
+                else:
+                    return redirect("/")  # Redirect to home 
             else:
                 flash("Password is incorrect")
         else:
@@ -77,7 +130,17 @@ def login():
     return render_template("home.html")
 
 
+# logout page
+@app.route('/logout')
+def logout():
+    # Clear all session data
+    session.clear() # session.clear removes all data from the session
+    print("Session cleared", session)
+    flash("You have been logged out.")
+    return redirect('/')
+
+
 if __name__ == "__main__":
-    app.run(debug=True, port=5190)
+    app.run(debug=True, port=5191)
 
 
