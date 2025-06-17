@@ -3,7 +3,7 @@
 
 <div class="two-column">
     <div class="w3-card-4">
-        <img src="{{ student[5][5] }}" alt="{{ student[1][1] }}">
+        <img src="{{ student[5] }}" alt="{{ student[1][1] }}">
     </div>
     <div class="info w3-card-4">
         <div class="student-info-table">
@@ -19,6 +19,10 @@
                 <tr>
                     <th> Year </th>
                     <td> {{ student[3][3] }} </td>
+                </tr>
+                <tr>
+                    <th> Pronounce </th>
+                    <td> {{ student[6] }} </td>
                 </tr>
         
             </table>
@@ -36,8 +40,8 @@
                 </tr>
                 {% for course in student %}
                 <tr>
-                    <td> <h3>{{ course[10] }}</h3> </td>
-                    <td> <h3>{{ course[11] }}</h3> </td>
+                    <td> <h3>{{ course[8] }}</h3> </td>
+                    <td> <h3>{{ course[9] }} {{ course[10] }}</h3> </td>
                 </tr>
                 {% endfor %}
             </table>
