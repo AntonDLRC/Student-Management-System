@@ -36,36 +36,55 @@ def admin():
 # teacher page
 @app.route("/teacher/<int:id>")
 def teacher(id):
-    # Check if the user is logged in and is the correct teacher
     if 'user' in session and session['user']['role'] == "teacher" and session['user']['id'] == id:
-        # Fetch students grouped by year levels assigned to this teacher
-        sql_students_by_year = """
-            SELECT Students.ID, Students.Name, Students.Age, Students.Year, Students.Image, YearLevels.Year
+        sql = """
+            SELECT YearLevels.Year, Teachers.FirstName
+            FROM Courses
+            JOIN YearLevels ON Courses.YearLevelID = YearLevels.ID
+            JOIN Teachers ON Courses.TeacherID = Teachers.ID
+            WHERE Courses.TeacherID = ?;
+        """
+        years = query_db(sql, (id,))
+        return render_template("teacher.html", teacher=session['user'], years=years)
+    else:
+        flash("You are not authorized to access this page.")
+        return redirect("/")
+
+#year page
+@app.route("/teacher/<int:id>/year/<int:year>")
+def year_levels(id, year):
+    if 'user' in session and session['user']['role'] == "teacher" and session['user']['id'] == id:
+        sql = """
+            SELECT ClassGroups.ID, ClassGroups.Name
+            FROM Courses
+            JOIN ClassGroups ON Courses.ClassGroupID = ClassGroups.ID
+            JOIN YearLevels ON Courses.YearLevelID = YearLevels.ID
+            WHERE Courses.TeacherID = ? AND YearLevels.Year = ?
+        """
+        groups = query_db(sql, (id, year))
+        return render_template("year_students.html", teacher=session['user'], year=year, groups=groups)
+    else:
+        flash("You are not authorized to access this page.")
+        return redirect("/")
+
+# groups page
+@app.route('/teacher/<int:id>/year/<int:year>/group/<int:group>')
+def class_group(id, year, group):
+    if 'user' in session and session['user']['role'] == "teacher" and session['user']['id'] == id:
+        sql = """
+            SELECT Students.ID, Students.Name
             FROM Students
             JOIN StudentCourses ON Students.ID = StudentCourses.StudentID
             JOIN Courses ON StudentCourses.CourseID = Courses.ID
             JOIN YearLevels ON Courses.YearLevelID = YearLevels.ID
-            WHERE Courses.TeacherID = ?
+            WHERE Courses.TeacherID = ? AND YearLevels.Year = ? AND Courses.ClassGroupID = ?;
         """
-        students_by_year = query_db(sql_students_by_year, (id,))
-
-        # Organize students into columns by year
-        students_by_year_column = {}
-        for student in students_by_year:
-            year = student[-1]  # Year is the last column
-            if year not in students_by_year_column:
-                students_by_year_column[year] = []
-            students_by_year_column[year].append(student)
-
-        # Pass the teacher session data and students to the template
-        return render_template(
-            "teacher.html",
-            teacher=session['user'],  # Pass the teacher data from the session
-            students_by_year_column=students_by_year_column  # Students grouped by year
-        )
+        students = query_db(sql, (id, year, group))
+        return render_template("classgroups.html", teacher=session['user'], year=year, group=group, students=students)
     else:
         flash("You are not authorized to access this page.")
         return redirect("/")
+
 
 # home page
 @app.route("/")
@@ -75,10 +94,15 @@ def home():
 # student details page
 @app.route("/student/<int:id>")
 def student(id):
-    sql = """SELECT * FROM Students 
- JOIN StudentCourses ON StudentCourses.StudentID = Students.ID
- JOIN Courses ON Courses.ID = StudentCourses.CourseID 
- WHERE Students.ID = ?;"""
+    sql = """SELECT Students.ID, Students.Name, Students.Age, Students.Year, Students.Gender, 
+Students.Image, Students.Pronounce, Students.ClassGroupID, Subjects.Name AS Subjects, Teachers.FirstName, 
+Teachers.LastName 
+FROM Students
+JOIN StudentCourses ON Students.ID = StudentCourses.StudentID
+JOIN Courses ON StudentCourses.CourseID = Courses.ID
+JOIN Subjects ON Courses.SubjectID = Subjects.ID
+JOIN Teachers ON Courses.TeacherID = Teachers.ID
+WHERE Students.ID = ?;"""
     result = query_db(sql, (id,)) #this query_db is not (sql, (id,) True) because the courses 
                                   # have multiple rows
     return render_template("student_details.html", student = result)
