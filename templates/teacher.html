@@ -1,11 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h1>Teacher Page</h1>
+<h1>Welcome, {{ teacher[1] }}!</h1>
+<p>Your Role: Teacher</p>
+<a href="/logout"><button class="btn">Logout</button></a>
 
-{% if session['user'] %}
-<!-- the whole user tuple is stored in the session this time- so it's id,username,passwordhash is available to us at all times -->
-    <p>Welcome {{ session['user'][1] }}</p>
-{% endif %}
-
+<h2>Your Years</h2>
+{% for year in years %}
+    <a href="/teacher/{{ teacher.id }}/year/{{ year[0] }}" class="btn">Year {{ year[0] }}</a>
+    {% endfor %}
 {% endblock %}
