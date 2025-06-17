@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Year {{ year }} Students</h1>
+<a href="/teacher/{{ teacher.id }}/year/{{ year }}" class="btn">Back</a>
+
+{% for student in students %}
+    {{ student[1] }}
+{% endfor %}
+
+{% endblock %}

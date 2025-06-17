@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Year {{ year }} Students</h1>
+<a href="/teacher/{{ teacher.id }}" class="btn">Back</a>
+
+<h2>Groups</h2>
+{% for group in groups %}
+    <a href="/teacher/{{ teacher.id }}/year/{{ year }}/group/{{ group[0] }}" class="btn">Group {{ group[1] }}</a>
+{% endfor %}
+
+{% endblock %}
