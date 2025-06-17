@@ -1,20 +1,41 @@
 -- database: ./database.db
 
---- creating users table ---
-CREATE TABLE User (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT); 
+--- Users table ---
+CREATE TABLE User (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, role TEXT); 
 
---- Courses database ---
-INSERT INTO Courses (CourseName, Teacher) VALUES
-('Mathematics', 'Mr. Johnson'),
-('Biology', 'Ms. Davis'),
-('English', 'Mrs. Thompson'),
-('History', 'Mr. Parker'),
-('Computer Science', 'Ms. Lewis'),
-('Physics', 'Dr. Carter'),
-('Chemistry', 'Mr. Walker'),
-('Physical Education', 'Coach Brown'),
-('Music', 'Ms. Adams'),
-('Art', 'Mr. Green');
+--- Yearlevels table ---
+CREATE TABLE YearLevels (ID INTEGER PRIMARY KEY AUTOINCREMENT, Year INTEGER NOT NULL);
+
+INSERT INTO YearLevels (Year) VALUES
+(7), (8), (9), (10), (11), (12), (13);
+
+--- CourseYearLevels table ---
+CREATE TABLE CourseYearLevels (
+    CourseID INTEGER,
+    YearLevelID INTEGER,
+    FOREIGN KEY (CourseID) REFERENCES Courses(ID),
+    FOREIGN KEY (YearLevelID) REFERENCES YearLevels(ID)
+);
+
+
+
+--- Courses Table ---
+
+CREATE TABLE Courses (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    SubjectID INTEGER NOT NULL,
+    TeacherID INTEGER NOT NULL,
+    ClassGroupID INTEGER,
+    FOREIGN KEY (SubjectID) REFERENCES Subjects(ID),
+    FOREIGN KEY (TeacherID) REFERENCES Teachers(ID),
+    FOREIGN KEY (ClassGroupID) REFERENCES ClassGroups(ID)
+);
+
+INSERT INTO Courses (SubjectID, TeacherID, ClassGroupID) VALUES
+(1, 1, 1), -- Math, Teacher 1, Group A
+(1, 1, 2), -- Math, Teacher 1, Group B
+(2, 2, NULL); -- Biology, Teacher 2, no specific class group
+
 
 --- StudentCourses ---
 
@@ -34,6 +55,65 @@ INSERT INTO StudentCourses (StudentID, CourseID) VALUES
 (13, 101), (13, 102), (13, 103), (13, 104), (13, 105), (13, 106),
 (14, 101), (14, 102), (14, 103), (14, 104), (14, 105), (14, 106);
 
+--- ClassGroups Table ---
+
+CREATE TABLE ClassGroups ( 
+    ID INTEGER PRIMARY KEY AUTOINCREMENT, 
+    Name TEXT,
+    Year INTEGER NOT NULL);
+
+
+--- Subjects Table ---
+CREATE TABLE Subjects ( ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT);
+
+INSERT INTO Subjects (Name) VALUES
+('Mathematics'),
+('Biology'),
+('English'),
+('History'),
+('Digital Technology'),
+('Physics'),
+('Chemistry'),
+('Physical Education'),
+('Music'),
+('Art'),
+('Health'),
+('Drama'),
+('Wood Technology'),
+('Food Technology'),
+('Languages'),
+('Business'),
+('Media'),
+('Geography'),
+('Social Studies');
+
+
+--- Teachers Table ---
+CREATE TABLE Teachers ( ID INTEGER PRIMARY KEY AUTOINCREMENT, FirstName TEXT, LastName TEXT, Email TEXT, Username TEXT, Password TEXT);
+
+INSERT INTO Teachers (FirstName, LastName, Email, Username, Password)
+VALUES 
+('Emma', 'Thompson', 'emma.thompson@school.edu', 'ethompson', 'Pass1234'),
+('John', 'Smith', 'john.smith@school.edu', 'jsmith', 'MathRocks1'),
+('Sarah', 'Patel', 'sarah.patel@school.edu', 'spatel', 'SciLove22'),
+('Lucy', 'Brown', 'lucy.brown@school.edu', 'lbrown', 'Zebra42$moon'),
+('David', 'Lee', 'david.lee@school.edu', 'dlee', 'Quiet!Sun9'),
+('Alice', 'Wong', 'alice.wong@school.edu', 'awong', 'Maple@88'),
+('Michael', 'Green', 'michael.green@school.edu', 'mgreen', 'Rocket*19'),
+('Olivia', 'Harris', 'olivia.harris@school.edu', 'oharris', 'MintyCloud7'),
+('Tom', 'Carter', 'tom.carter@school.edu', 'tcarter', 'BlueTiger33'),
+('Rachel', 'Adams', 'rachel.adams@school.edu', 'radams', 'LuckyBean5'),
+('Ella', 'White', 'ella.white@school.edu', 'ewhite', 'Piano!42'),
+('James', 'Bell', 'james.bell@school.edu', 'jbell', 'SunnyRain8'),
+('Sophie', 'Evans', 'sophie.evans@school.edu', 'sevans', 'ForestWave9'),
+('Nathan', 'Scott', 'nathan.scott@school.edu', 'nscott', 'BookRide21'),
+('Megan', 'Brooks', 'megan.brooks@school.edu', 'mbrooks', 'Cactus#27'),
+('Kevin', 'Young', 'kevin.young@school.edu', 'kyoung', 'JazzStone3'),
+('Julia', 'Kim', 'julia.kim@school.edu', 'jkim', 'CookieFox12'),
+('Daniel', 'Clark', 'daniel.clark@school.edu', 'dclark', 'RiverMint6'),
+('Fiona', 'Wright', 'fiona.wright@school.edu', 'fwright', 'OceanLeaf1');
+
+
 
 SELECT * FROM Courses;
 
@@ -46,3 +126,32 @@ SELECT * FROM Students
  --- Students with their name and image ---
  SELECT Students.Name, Students.Image FROM Students;
 
+--- Select id and name ---
+SELECT Students.ID, Students.Name
+FROM Students
+JOIN StudentCourses ON Students.ID = StudentCourses.StudentID
+WHERE StudentCourses.CourseID = 1;
+
+--- Select student's id, name, age, year, gender, image, pronounce, classgorupid, and subjects, and teacher's firstname and last name ---
+SELECT Students.ID, Students.Name, Students.Age, Students.Year, Students.Gender, 
+Students.Image, Students.Pronounce, Students.ClassGroupID, Subjects.Name AS Subjects, Teachers.FirstName, 
+Teachers.LastName 
+FROM Students
+JOIN StudentCourses ON Students.ID = StudentCourses.StudentID
+JOIN Courses ON StudentCourses.CourseID = Courses.ID
+JOIN Subjects ON Courses.SubjectID = Subjects.ID
+JOIN Teachers ON Courses.TeacherID = Teachers.ID
+WHERE Students.ID = 1;
+
+--- Select the year and teacher's first name ---
+SELECT DISTINCT YearLevels.Year, Teachers.FirstName
+            FROM Courses
+            JOIN YearLevels ON Courses.YearLevelID = YearLevels.ID
+            JOIN Teachers ON Courses.TeacherID = Teachers.ID
+            WHERE Courses.TeacherID = ?;
+
+--- SELECT the id of the course, classgroup ID, and the name of the group ---
+SELECT Courses.ID, Courses.ClassGroupID, ClassGroups.Name
+FROM Courses 
+JOIN ClassGroups ON Courses.ClassGroupID = ClassGroups.ID
+WHERE Courses.TeacherID = 1 AND ClassGroups.ID = 7;
