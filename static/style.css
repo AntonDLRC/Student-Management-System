@@ -1,5 +1,10 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: Poppins, sans-serif;}
 
+/* Set the background color for the entire page */
+body {
+    background-color: #0b0040;
+}
+
 .six-column {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
