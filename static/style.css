@@ -5,6 +5,10 @@ body {
     background-color: #0b0040;
 }
 
+p, h1, h2, h3, h4, h5, h6 {
+    color: #ffffff; /* Set the text color to white */
+}
+
 .six-column {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -115,6 +119,8 @@ body {
    
 }
 
+/* button css */
+
 .btn {
     font-size: 15px;
     font-weight: 700;
@@ -124,6 +130,7 @@ body {
     border: none;
     border-radius: 10rem;
     z-index: 2;
+    text-decoration: none;
 
     transition: all 0.4s;
 
@@ -133,8 +140,27 @@ body {
 .btn:hover {
     transform: translateY(-6px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    
-    
+}
+
+.years-table-btn {
+    font-size: 18px;
+    font-weight: 700;
+    padding-left: 4em; 
+    padding-right: 4em;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: rgb(218, 38, 38);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 10rem;
+    z-index: 2;
+    text-decoration: none;
+
+    transition: all 0.4s;
+}
+
+.years-table-btn:hover {
+    background-color: #940101
 }
 
 /* image slideshow css */
@@ -190,6 +216,21 @@ body {
 }
 
 
+/* years table css in teacher.html */
+.years-table {
+    border: 2px solid white;
+    padding-left: 1em;
+    padding-right: 1.4em;
+    padding-bottom: 3em;
+    padding-top: 5em;
 
+
+}
+
+.years-table td {
+    border: none;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
 
 
