@@ -139,7 +139,6 @@ def login():
                     'role': user[3] 
                     }
                 print("Session set:", session)  # Debugging: Check session after login
-                flash("Logged In Succesfully!")
                 #redirect based on role
                 if user[3] == "admin":
                     return redirect("/admin")
