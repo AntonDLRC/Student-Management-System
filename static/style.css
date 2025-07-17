@@ -206,8 +206,8 @@ p, h1, h2, h3, h4, h5, h6 {
 
 }
 
-/* navigation bar css */
-.w3-bar .button-bar {
+/* home navigation bar css */
+.w3-bar .home-navigation {
     margin-left: 50em;
 }
 
@@ -218,18 +218,25 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /* years table css in teacher.html */
 .years-table {
-    border: 2px solid white;
+    position: absolute;
+    z-index: 1000;
+    border-left: none;
+    border-right: 2px solid white;
+    border-top: none;
+    border-bottom: none;
     padding-left: 1em;
     padding-right: 1.4em;
-    padding-bottom: 3em;
-    padding-top: 5em;
+    padding-bottom: 25em;
+    padding-top: 14em;
+    top: 0;
+
+
 
 
 }
 
 .years-table td {
     border: none;
-    padding-top: 1.5em;
     padding-bottom: 1.5em;
 }
 
