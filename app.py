@@ -46,9 +46,6 @@ def teacher(id):
         """
         years = query_db(sql, (id,))
         return render_template("teacher.html", teacher=session['user'], years=years)
-    else:
-        flash("You are not authorized to access this page.")
-        return redirect("/")
 
 #year page
 @app.route("/teacher/<int:id>/year/<int:year>")
@@ -126,7 +123,12 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        sql = "SELECT * FROM User WHERE username = ?"
+        sql = """
+            SELECT User.id, User.username, User.password, User.role, Teachers.FirstName
+            FROM User
+            JOIN Teachers ON User.username = Teachers.Username
+            WHERE User.username = ?;
+        """
         user = query_db(sql=sql, args=(username,), one=True)
         if user:
             if check_password_hash(user[2], password):
@@ -136,7 +138,8 @@ def login():
                 session['user'] = { 
                     'id': user[0], 
                     'username': user[1],
-                    'role': user[3] 
+                    'role': user[3],
+                    'first_name': user[4]  # Add this line to store the first name
                     }
                 print("Session set:", session)  # Debugging: Check session after login
                 #redirect based on role
