@@ -155,3 +155,9 @@ SELECT Courses.ID, Courses.ClassGroupID, ClassGroups.Name
 FROM Courses 
 JOIN ClassGroups ON Courses.ClassGroupID = ClassGroups.ID
 WHERE Courses.TeacherID = 1 AND ClassGroups.ID = 7;
+
+--- Select the id, username, password, role, and first name of the user ---
+SELECT User.id, User.username, User.password, User.role, Teachers.FirstName
+FROM User
+JOIN Teachers ON User.username = Teachers.Username
+WHERE User.username = "ethompson";
