@@ -59,7 +59,16 @@ def year_levels(id, year):
             WHERE Courses.TeacherID = ? AND YearLevels.Year = ?
         """
         groups = query_db(sql, (id, year))
-        return render_template("year_students.html", teacher=session['user'], year=year, groups=groups)
+
+        years = """
+            SELECT YearLevels.Year, Teachers.FirstName
+            FROM Courses
+            JOIN YearLevels ON Courses.YearLevelID = YearLevels.ID
+            JOIN Teachers ON Courses.TeacherID = Teachers.ID
+            WHERE Courses.TeacherID = ?;
+        """
+        years = query_db(years, (id,))
+        return render_template("year_students.html", teacher=session['user'], year=year, groups=groups, years=years)
     else:
         flash("You are not authorized to access this page.")
         return redirect("/")
