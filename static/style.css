@@ -250,4 +250,21 @@ p, h1, h2, h3, h4, h5, h6 {
     padding-bottom: 1.5em;
 }
 
+/* years students css in year_students */
+.back-year-students {
+    padding-left: 20em;
+}
 
+/* group css in year_students */
+.groups a.btn {
+    margin-left: 6em;
+    padding-left: 4em;
+    padding-right: 4em;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    display: inline-block;
+}
+
+.groups {
+    margin-left: 22em;
+}
