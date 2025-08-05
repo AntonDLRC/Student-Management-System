@@ -268,3 +268,27 @@ p, h1, h2, h3, h4, h5, h6 {
 .groups {
     margin-left: 22em;
 }
+
+/* classgroup css for students 6 column */
+.six-column-students {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1em;
+    padding: 1em;
+}
+
+.six-column-students .w3-card-4 {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.six-column-students .w3-card-4 img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 150px; /* Set a maximum height for the image */
+}
