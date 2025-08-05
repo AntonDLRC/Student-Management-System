@@ -78,7 +78,7 @@ def year_levels(id, year):
 def class_group(id, year, group):
     if 'user' in session and session['user']['role'] == "teacher" and session['user']['id'] == id:
         sql = """
-            SELECT Students.ID, Students.Name
+            SELECT Students.ID, Students.Name, Students.Image
             FROM Students
             JOIN StudentCourses ON Students.ID = StudentCourses.StudentID
             JOIN Courses ON StudentCourses.CourseID = Courses.ID
@@ -86,7 +86,17 @@ def class_group(id, year, group):
             WHERE Courses.TeacherID = ? AND YearLevels.Year = ? AND Courses.ClassGroupID = ?;
         """
         students = query_db(sql, (id, year, group))
-        return render_template("classgroups.html", teacher=session['user'], year=year, group=group, students=students)
+
+        years = """
+            SELECT YearLevels.Year, Teachers.FirstName
+            FROM Courses
+            JOIN YearLevels ON Courses.YearLevelID = YearLevels.ID
+            JOIN Teachers ON Courses.TeacherID = Teachers.ID
+            WHERE Courses.TeacherID = ?;
+        """
+        years = query_db(years, (id,))
+
+        return render_template("classgroups.html", teacher=session['user'], year=year, group=group, years=years, students=students)
     else:
         flash("You are not authorized to access this page.")
         return redirect("/")
