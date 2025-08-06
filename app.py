@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, flash, session, redirect
 import sqlite3
 #super cool functions to generate and check password password hashes
@@ -9,7 +10,7 @@ app = Flask(__name__)
 #secret key is needed for sessions and flash messages
 app.config['SECRET_KEY'] = "MySecretKey"
 
-DATABASE = "database.db"
+DATABASE = os.path.join(os.path.dirname(__file__), "database.db")
 
 #This query_db function combines getting the databse, cursor, executing and fetching the results
 def query_db(sql, args=(), one=False):
