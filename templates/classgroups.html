@@ -38,7 +38,7 @@
 
 <a href="/teacher/{{ teacher.id }}/year/{{ year }}" class="btn">Back</a>
 
-<div class="six-column-students">
+<div class="four-column-students">
     {% for student in students %} 
     <a href="{{ url_for('student', id=student[0]) }}">
       <div class="w3-card-4">   
