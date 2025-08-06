@@ -269,26 +269,28 @@ p, h1, h2, h3, h4, h5, h6 {
     margin-left: 22em;
 }
 
-/* classgroup css for students 6 column */
-.six-column-students {
+/* classgroup css for students 4 column */
+.four-column-students {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1em;
-    padding: 1em;
+    grid-template-columns: repeat(4, 1fr);
+    margin-left: 25em;
+    padding-right: 8em;
+    row-gap: 2em;
+    
 }
 
-.six-column-students .w3-card-4 {
-    width: auto;
-    height: auto;
+.four-column-students .w3-card-4 {
+    width: 13em;
+    height: 13em;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.six-column-students .w3-card-4 img {
+.four-column-students .w3-card-4 img {
     width: auto;
     height: auto;
-    max-width: 100%;
-    max-height: 150px; /* Set a maximum height for the image */
+    max-width: 10em;
+    max-height: 10em; /* Set a maximum height for the image */
 }
