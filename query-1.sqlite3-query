@@ -310,6 +310,14 @@ WHERE ClassGroupID = 8;
 
 SELECT * FROM Courses;
 
+UPDATE Students
+SET Image = null
+WHERE ID BETWEEN 1 AND 129;
+
+UPDATE Students
+SET Image = CAST(ID AS TEXT) || '.png'
+WHERE ID BETWEEN 1 AND 129;
+
 --- Students with their courses ---
 SELECT * FROM Students 
  JOIN StudentCourses ON StudentCourses.StudentID = Students.ID
