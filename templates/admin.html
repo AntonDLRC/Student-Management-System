@@ -6,7 +6,7 @@
     {% for student in results %} 
     <a href="{{ url_for('student', id=student[0]) }}">
       <div class="w3-card-4">   
-          <img src="{{ student[2] }}" alt="{{ student[1] }}">
+          <img src="{{ url_for('static', filename='number_images/' ~ student[2]) }}" alt="{{ student[1] }}">
           <div class="info">
             <h3> {{ student[1] }}</h3>
           </div>
