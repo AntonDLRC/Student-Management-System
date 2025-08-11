@@ -3,7 +3,7 @@
 
 <div class="two-column">
     <div class="w3-card-4">
-        <img src="{{ student[5] }}" alt="{{ student[1][1] }}">
+        <img src="{{ url_for('static', filename='number_images/' ~ student[0][5]) }}" alt="{{ student[0][1] }}">
     </div>
     <div class="info w3-card-4">
         <div class="student-info-table">
