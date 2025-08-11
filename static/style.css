@@ -277,6 +277,10 @@ p, h1, h2, h3, h4, h5, h6 {
     padding-right: 8em;
     row-gap: 2em;
     
+    /* Allow vertical scrolling */
+    max-height: calc(100vh - 150px); /* adjust 150px to account for header space */
+    overflow-y: auto;
+    padding-bottom: 1em;
 }
 
 .four-column-students .w3-card-4 {
@@ -293,4 +297,8 @@ p, h1, h2, h3, h4, h5, h6 {
     height: auto;
     max-width: 10em;
     max-height: 10em; /* Set a maximum height for the image */
+}
+
+.four-column-students .w3-card-4 .info h3 {
+    font-size: 1.5em;
 }
