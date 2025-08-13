@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="teacher-navigation">
-        <h1><a href="/logout" class="w3-bar-item w3-button" >Log Out</a></h1>
+        <h1><a href="/logout" class="log-out-btn" >Log Out</a></h1>
     </div>
 </nav>
 
@@ -35,8 +35,6 @@
 <div class="back-year-students">
     <a href="/teacher/{{ teacher.id }}" class="btn">Back</a>
 </div>
-
-<a href="/teacher/{{ teacher.id }}/year/{{ year }}" class="btn">Back</a>
 
 <div class="four-column-students">
     {% for student in students %} 
