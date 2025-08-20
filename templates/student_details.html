@@ -1,7 +1,30 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<div class="two-column">
+<nav class="w3-bar">
+    <div class="w3-bar-item">
+        <div class="logo">
+            <h1> Logo </h1> 
+        </div>
+    </div>
+    <div class="w3-bar-item">
+        <div class="welcome-teacher">
+            <h3>Welcome, <br> Teacher {{ teacher.first_name }}!</h3>
+        </div>
+    </div>
+    <div class="teacher-navigation">
+        <h1><a href="/logout" class="log-out-btn" >Log Out</a></h1>
+    </div>
+</nav>
+
+<style>
+  html, body {
+    height: auto;
+    overflow: hidden;
+  }
+</style>
+
+<div class="one-column">
     <div class="w3-card-4">
         <img src="{{ url_for('static', filename='number_images/' ~ student[0][5]) }}" alt="{{ student[0][1] }}">
     </div>
@@ -22,7 +45,7 @@
                 </tr>
                 <tr>
                     <th> Pronounce </th>
-                    <td> {{ student[6] }} </td>
+                    <td> {{ url_for('static', filename='pronounces/' ~ student[0][6]) }} </td>
                 </tr>
         
             </table>
