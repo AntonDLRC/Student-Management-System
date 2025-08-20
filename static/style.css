@@ -33,14 +33,14 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 
-.two-column {
+.one-column {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Make the right column smaller */
+    grid-template-columns: 1fr;
     gap: 1em;
     padding: 1em;
 }
 
-.two-column .w3-card-4 {
+.one-column .w3-card-4 {
     position: relative; /* without the position relative, the image will 
                            position itself to the entire page */
     width: auto; 
@@ -48,7 +48,7 @@ p, h1, h2, h3, h4, h5, h6 {
     
 }
 
-.two-column .w3-card-4 img {
+.one-column .w3-card-4 img {
     max-width: 250px; /* Set a maximum width for the image */
     max-height: 250px; /* Set a maximum height for the image */
     position: absolute; /* position absoulte made the image relate to w3-card-4 
@@ -56,63 +56,75 @@ p, h1, h2, h3, h4, h5, h6 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    padding-bottom: 8em;
 }
 
 /* student info table css */
 
-.two-column .student-info-table table {
+.one-column .student-info-table table {
     position: relative;
     text-align: left;
     line-height: 2;
-    width: 100%;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 20px;
-    padding-bottom: 5px;
-    font-size: 22px;
+    width: 18em;
+    max-width: 100%;
+    padding-left: 45em;     
+    padding-top: 0.5em;    /* reduced from 20px */
+    padding-bottom: 0.5em; /* reduced from 5px */
+    font-size: 16px;  
     
 }
 
-.two-column .student-info-table th {
+.one-column .student-info-table th {
     font-weight: 900;
     background-color: #f2f2f2;
     padding-left: 15px;
 
 }
 
-.two-column .student-info-table td {
+.one-column .student-info-table td {
     padding-left: 15px;
+    background-color: #f2f2f2;
     font-weight: normal;
 }
 
 /* courses table css */
 
-.two-column .info .courses-table {
+.one-column .courses-table {
     line-height: 1;
-    padding-left: 30px;
+    padding-left: 40em;
     padding-right: 30px;
-    padding-top: 20px;
-    padding-bottom: 30px;
+    width: 18em;
+    max-width: 100%;
+    font-size: 16px;
 }
 
 
 
-.two-column .info .courses-table table, th, td {
+.one-column .courses-table table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
+    
+   
 }
 
-.two-column .info .courses-table th {
+.one-column .courses-table th {
     background-color: #f2f2f2;
-    font-weight: 900;
 }
 
-.two-column .info .courses-table td {
+.one-column .courses-table td {
     text-align: left;
+    background-color: #f2f2f2;
     padding-left: 10px;
 }
 
-.two-column .info.w3-card-4 .courses-table table {
+.one-column .courses-table h3 {
+    color: black;
+}
+
+
+
+.one-column .info.w3-card-4 .courses-table table {
     width: 100%;
     border-collapse: collapse;
    
@@ -164,7 +176,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .log-out-btn {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 700;
     padding-left: 25px; 
     padding-right: 25px;
@@ -184,25 +196,6 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 
-.log-out-btn h1 {
-  transition: all 200ms;
-}
-
-.log-out-btn:hover h1 {
-  transform: scale(.9);
-  opacity: .75;
-}
-
-@media screen and (max-width: 991px) {
-.log-out-btn {
-font-size: 15px;
-height: 50px;
-}
-
-.log-out-btn h1 {
-line-height: 50px;
-}
-}
 /* image slideshow css */
 /* This is how you can create a slideshow using CSS animations without using JavaScript. 
    The images will change every 5 seconds. 
