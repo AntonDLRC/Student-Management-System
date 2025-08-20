@@ -122,7 +122,15 @@ JOIN Teachers ON Courses.TeacherID = Teachers.ID
 WHERE Students.ID = ?;"""
     result = query_db(sql, (id,)) #this query_db is not (sql, (id,) True) because the courses 
                                   # have multiple rows
-    return render_template("student_details.html", student = result)
+    years = """
+            SELECT YearLevels.Year, Teachers.FirstName
+            FROM Courses
+            JOIN YearLevels ON Courses.YearLevelID = YearLevels.ID
+            JOIN Teachers ON Courses.TeacherID = Teachers.ID
+            WHERE Courses.TeacherID = ?;
+        """
+    years = query_db(years, (id,))
+    return render_template("student_details.html", teacher=session['user'], student = result, years=years)
 
 # signup page - when a user signup, their username and password are stored in the database and the password is hashed
 @app.route("/signup", methods = ["GET", "POST"])
