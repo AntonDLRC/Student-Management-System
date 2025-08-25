@@ -24,6 +24,18 @@
   }
 </style>
 
+<table class="years-table">
+    {% for year in years|unique %}
+    <tr>
+        <td> <a href="/teacher/{{ teacher.id }}/year/{{ year[0] }}" class="btn years-table-btn">Year {{ year[0] }}</a> </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="back-year-students">
+    <a href="{{ url_for('student', id=student[0], year=year, group=group) }}" class="btn">Back</a>
+</div>
+
 <div class="one-column">
     <div class="w3-card-4">
         <img src="{{ url_for('static', filename='number_images/' ~ student[0][5]) }}" alt="{{ student[0][1] }}">
