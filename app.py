@@ -74,7 +74,7 @@ def year_levels(id, year):
         flash("You are not authorized to access this page.")
         return redirect("/")
 
-# groups page
+# classgroups page
 @app.route('/teacher/<int:id>/year/<int:year>/group/<int:group>')
 def class_group(id, year, group):
     if 'user' in session and session['user']['role'] == "teacher" and session['user']['id'] == id:
@@ -97,6 +97,8 @@ def class_group(id, year, group):
         """
         years = query_db(years, (id,))
 
+        
+
         return render_template("classgroups.html", teacher=session['user'], year=year, group=group, years=years, students=students)
     else:
         flash("You are not authorized to access this page.")
@@ -111,6 +113,8 @@ def home():
 # student details page
 @app.route("/student/<int:id>")
 def student(id):
+    year = request.args.get('year')
+    group = request.args.get('group')
     sql = """SELECT Students.ID, Students.Name, Students.Age, Students.Year, Students.Gender, 
 Students.Image, Students.Pronounce, Students.ClassGroupID, Subjects.Name AS Subjects, Teachers.FirstName, 
 Teachers.LastName 
@@ -130,7 +134,10 @@ WHERE Students.ID = ?;"""
             WHERE Courses.TeacherID = ?;
         """
     years = query_db(years, (id,))
-    return render_template("student_details.html", teacher=session['user'], student = result, years=years)
+    
+    return render_template("student_details.html", teacher=session['user'], student = result, years=years, year=year, group=group)
+
+    
 
 # signup page - when a user signup, their username and password are stored in the database and the password is hashed
 @app.route("/signup", methods = ["GET", "POST"])
