@@ -33,16 +33,19 @@
 </table>
 
 <div class="back-year-students">
-    <a href="{{ url_for('student', id=student[0], year=year, group=group) }}" class="btn">Back</a>
+    <a href="/teacher/{{ teacher.id }}/year/{{ year }}/group/{{ group }}" class="btn">Back</a>
 </div>
 
 <div class="one-column">
     <div class="w3-card-4">
         <img src="{{ url_for('static', filename='number_images/' ~ student[0][5]) }}" alt="{{ student[0][1] }}">
     </div>
-    <div class="info w3-card-4">
+    <div class="info">
         <div class="student-info-table">
             <table>
+                <tr>
+                    <th colspan="2"> Student's Details</th>
+                </tr>
                 <tr>
                     <th> Name </th>
                     <td> {{ student[1][1] }} </td>
@@ -59,24 +62,37 @@
                     <th> Pronounce </th>
                     <td> {{ url_for('static', filename='pronounces/' ~ student[0][6]) }} </td>
                 </tr>
+                <tr>
+                    <th colspan="2"> Parent's Details</th>
+                </tr>
+                <tr>
+                <th> Name </th>
+                <td>{{ parent_name if parent_name else 'N/A' }}</td>
+            </tr>
+            <tr>
+                <th> Phone </th>
+                <td>{{ parent_phone if parent_phone else 'N/A' }}</td>
+            </tr>
+            <tr>
+                <th> Email </th>
+                <td>{{ parent_email if parent_email else 'N/A' }}</td>
+            </tr>
         
             </table>
-
-
         </div>
         <div class="courses-table">
             <table>
                 <tr>
-                    <th colspan="2"> Courses </th>
+                    <th colspan="2"> <strong> Subjects </strong> </th>
                 </tr>
                 <tr>
-                    <th> <h3> <strong> Course </strong> </h3> </th>
-                    <th> <h3> <strong> Teacher </strong> </h3> </th>
+                    <th> <h4> Course </h4> </th>
+                    <th> <h4> Teacher </h4> </th>
                 </tr>
                 {% for course in student %}
                 <tr>
-                    <td> <h3>{{ course[8] }}</h3> </td>
-                    <td> <h3>{{ course[9] }} {{ course[10] }}</h3> </td>
+                    <td> <h3>{{ course[8] }} </h3> </td>
+                    <td> <h3>{{ course[9] }} {{ course[10] }} </h3> </td>
                 </tr>
                 {% endfor %}
             </table>
