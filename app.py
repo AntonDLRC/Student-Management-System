@@ -48,7 +48,7 @@ def teacher(id):
         years = query_db(sql, (id,))
         return render_template("teacher.html", teacher=session['user'], years=years)
 
-#year page
+#year page 
 @app.route("/teacher/<int:id>/year/<int:year>")
 def year_levels(id, year):
     if 'user' in session and session['user']['role'] == "teacher" and session['user']['id'] == id:
@@ -111,10 +111,8 @@ def home():
     return render_template("home.html")
 
 # student details page
-@app.route("/student/<int:id>")
-def student(id):
-    year = request.args.get('year')
-    group = request.args.get('group')
+@app.route("/teacher/<int:id>/year/<int:year>/group/<int:group>/student/<int:student_id>")
+def student(id, year, group, student_id):
     sql = """SELECT Students.ID, Students.Name, Students.Age, Students.Year, Students.Gender, 
 Students.Image, Students.Pronounce, Students.ClassGroupID, Subjects.Name AS Subjects, Teachers.FirstName, 
 Teachers.LastName 
@@ -124,7 +122,7 @@ JOIN Courses ON StudentCourses.CourseID = Courses.ID
 JOIN Subjects ON Courses.SubjectID = Subjects.ID
 JOIN Teachers ON Courses.TeacherID = Teachers.ID
 WHERE Students.ID = ?;"""
-    result = query_db(sql, (id,)) #this query_db is not (sql, (id,) True) because the courses 
+    result = query_db(sql, (student_id,)) #this query_db is not (sql, (id,) True) because the courses 
                                   # have multiple rows
     years = """
             SELECT YearLevels.Year, Teachers.FirstName
@@ -134,8 +132,7 @@ WHERE Students.ID = ?;"""
             WHERE Courses.TeacherID = ?;
         """
     years = query_db(years, (id,))
-    
-    return render_template("student_details.html", teacher=session['user'], student = result, years=years, year=year, group=group)
+    return render_template("student_details.html", teacher=session['user'], student = result, years=years, year=year, group=group, student_id=student_id)
 
     
 
