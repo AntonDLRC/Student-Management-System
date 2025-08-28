@@ -38,7 +38,7 @@
 
 <div class="four-column-students">
     {% for student in students %} 
-    <a href="{{ url_for('student', id=student[0]) }}">
+    <a href="{{ url_for('student', id=teacher.id, year=year, group=group, student_id=student[0]) }}">
       <div class="w3-card-4">   
           <img src="{{ url_for('static', filename='number_images/' ~ student[2]) }}" alt="{{ student[1] }}">
             <div class="info">
