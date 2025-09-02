@@ -60,7 +60,11 @@
                 </tr>
                 <tr>
                     <th> Pronounce </th>
-                    <td> {{ url_for('static', filename='pronounces/' ~ student[0][6]) }} </td>
+                    <td>
+                        <button class="pronounce-btn" onclick="playPronounce()">🔊 Play</button>
+                        <audio id="pronounce-audio" src="{{ url_for('static', filename='pronounces/' ~ student[0][6]) }}"></audio>
+                        <h5> {{ student[0][8] }}  </h5>
+                    </td>
                 </tr>
                 <tr>
                     <th colspan="2"> Parent's Details</th>
