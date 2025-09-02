@@ -98,6 +98,8 @@ p, h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
+
+
 /* courses table css */
 
 .one-column .courses-table table {
@@ -132,7 +134,7 @@ p, h1, h2, h3, h4, h5, h6 {
     padding-right: 6em;
 }
 
-.one-column .courses-table h1, h2, h3, h4 {
+.one-column .courses-table h1, h2, h3, h4, h5, h6 {
     color: black;
 }
 
@@ -364,3 +366,20 @@ nav.w3-bar {
     font-size: 1.3em;
     color: black;
 }
+
+/* Pronounce button stle */
+
+.pronounce-btn {
+    background-color: #1c0c70;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+
+    transition: all 0.4s;
+  }
+.pronounce-btn:hover {
+    background-color: #a04545;
+  }
+
