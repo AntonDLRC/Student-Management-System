@@ -114,7 +114,7 @@ def home():
 @app.route("/teacher/<int:id>/year/<int:year>/group/<int:group>/student/<int:student_id>")
 def student(id, year, group, student_id):
     sql = """SELECT Students.ID, Students.Name, Students.Age, Students.Year, Students.Gender, 
-Students.Image, Students.Pronounce, Students.ClassGroupID, Subjects.Name AS Subjects, Teachers.FirstName, 
+Students.Image, Students.Pronounce, Students.ClassGroupID, Students.Fanatic, Subjects.Name AS Subjects, Teachers.FirstName, 
 Teachers.LastName 
 FROM Students
 JOIN StudentCourses ON Students.ID = StudentCourses.StudentID
