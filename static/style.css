@@ -54,8 +54,8 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .one-column .w3-card-4 img {
-    max-width: 330px; /* Set a maximum width for the image */
-    max-height: 330px; /* Set a maximum height for the image */
+    max-width: 350px; /* Set a maximum width for the image */
+    max-height: 350px; /* Set a maximum height for the image */
     position: absolute; /* position absoulte made the image relate to w3-card-4 
                            and position there */
     top: 50%;
