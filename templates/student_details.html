@@ -38,7 +38,11 @@
 
 <div class="one-column">
     <div class="w3-card-4">
+        {% if student[0][5].isdigit() %}
         <img src="{{ url_for('static', filename='number_images/' ~ student[0][5]) }}" alt="{{ student[0][1] }}">
+        {% else %}
+        <img src="{{ url_for('static', filename='real-images/' ~ student[0][5]) }}" alt="Real Image">
+        {% endif %}
     </div>
     <div class="info">
         <div class="student-info-table">
