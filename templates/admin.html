@@ -2,18 +2,19 @@
 {% block body %}
 
 <h1>Admin Page</h1>
-  <div class="six-column">
-    {% for student in results %} 
-    <a href="{{ url_for('student', id=student[0]) }}">
-      <div class="w3-card-4">   
-          <img src="{{ url_for('static', filename='number_images/' ~ student[2]) }}" alt="{{ student[1] }}">
-          <div class="info">
-            <h3> {{ student[1] }}</h3>
-          </div>
+ <div class="six-column">
+  {% for student in results %} 
+    <div class="w3-card-4">   
+      {% if student[2][0].isdigit() %}
+        <img src="{{ url_for('static', filename='number_images/' ~ student[2]) }}" alt="{{ student[1] }}">
+      {% else %}
+        <img src="{{ url_for('static', filename='real-images/' ~ student[2]) }}" alt="Real Image">
+      {% endif %}
+      <div class="info">
+        <h3> {{ student[1] }}</h3>
       </div>
-    </a>
-    {% endfor %}
-  </div>
+    </div>
+  {% endfor %}
+</div>
 
- 
 {% endblock %}
