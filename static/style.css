@@ -9,6 +9,10 @@ p, h1, h2, h3, h4, h5, h6 {
     color: #ffffff; /* Set the text color to white */
 }
 
+.signup label {
+    color: white; 
+}
+
 .six-column {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -383,3 +387,25 @@ nav.w3-bar {
     background-color: #a04545;
   }
 
+/* back button (signup to go back to home html) */
+.signup-to-home {
+    text-align: center;
+    padding-top: 2em;
+    margin-right: 85em;
+
+}
+
+.signup-to-home .btn {
+    background-color: #a04545;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+
+    transition: all 0.4s;
+}
+
+.signup-to-home .btn:hover {
+    background-color: #1c0c70;
+}
