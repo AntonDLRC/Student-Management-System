@@ -47,6 +47,11 @@ def teacher(id):
         """
         years = query_db(sql, (id,))
         return render_template("teacher.html", teacher=session['user'], years=years)
+    
+# about us page
+@app.route("/aboutus")
+def aboutus():
+    return render_template("aboutus_page.html")
 
 #year page 
 @app.route("/teacher/<int:id>/year/<int:year>")
