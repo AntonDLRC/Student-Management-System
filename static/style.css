@@ -237,19 +237,18 @@ p, h1, h2, h3, h4, h5, h6 {
     100% { background-image: url('/static/images/Image1.jpeg'); }
 } */
 
+
 /* login form css */
 .login form {
     border: 3px solid #f1f1f1;
     padding: 16px;
     
-
-
 }
 
 .login {
     display: flex;
     justify-content: center;
-    margin-left: 50em;
+    margin: 0 auto 0 auto;
     width: 25em;
     height: 16em;
     line-height: 2em;
@@ -257,6 +256,18 @@ p, h1, h2, h3, h4, h5, h6 {
     font-family: Poppins, sans-serif;
     
 
+}
+
+/* home page css (introduction message) */
+.introduction-message h3 {
+    color: white;
+    font-size: 15px;
+    margin: 0;
+}
+
+.introduction-message {
+    margin: 0;
+    padding: 0;
 }
 
 /* home navigation bar css */
