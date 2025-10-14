@@ -9,17 +9,12 @@
     </div>
     <div class="home-navigation">
         <h1><a href="/" class="w3-bar-item w3-button" >Home</a></h1>
-        <h1><a href="/logout" class="w3-bar-item w3-button" >Log Out</a></h1>
-        <h1><a href="/signup" class="w3-bar-item w3-button" >Sign Up</a></h1>
+
     </div>
 </nav>
 
 
 <!--<div class="slideshow"> -->
-
-<button class="btn">Learn More</button>
-
-
 
 
 <div class="home-content">
@@ -92,15 +87,21 @@
              <img src="{{ url_for('static', filename='color_images/white-radial-gradient.avif') }}" alt="White Radial Gradient">
         </div>
         <div class="learn-more-text">
-            <h1> Learn More </h1>
-        <h2>
+            <h2> Learn More </h2>
+        <h3>
             Our target audience is <br> 
             schools that are culturally <br> 
             respectful and are <br>
             friendly
-        </h2>
+        </h3>
+        </div>
+        <div class="learn-more-button">
+            <a href="/aboutus"><button class="btn">Learn More</button></a>
         </div>
 </div>
 
+<div class="creation">
+    <h5> Created in 2025 </h5>
+</div>
 
 {% endblock %}
