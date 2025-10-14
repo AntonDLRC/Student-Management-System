@@ -460,10 +460,27 @@ nav.w3-bar {
     padding-left: 62.5em;
 }
 
-.about-us {
+/* about us css in home page */
+
+.learn-more {
+    position: relative;
+}
+
+.learn-more-image img {
     position: absolute;
-    margin-left: 27em;
+    margin-left: 3em;
+    margin-top: 17em;
+    width: 27em;
+    height: 18em;
+}
+
+.learn-more-text {
+    position: absolute;
+    margin-left: 53em;
     margin-top: 15em;
     text-align: center;
 }
 
+.learn-more-text h1, h2 {
+    color: white;
+}
