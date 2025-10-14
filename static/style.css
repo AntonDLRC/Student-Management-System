@@ -120,6 +120,11 @@ p, h1, h2, h3, h4, h5, h6 {
     
 }
 
+.one-column .courses-table h3 {
+    color: black;
+    
+}
+
 
 
 .one-column .courses-table table, th, td {
@@ -176,6 +181,12 @@ p, h1, h2, h3, h4, h5, h6 {
 .btn:hover {
     transform: translateY(-6px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.year-header h2 {
+    color: white;
+    text-align: center;
+    margin-left: 4em;
 }
 
 .years-table-btn {
@@ -281,7 +292,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /* home navigation bar css */
 .w3-bar .home-navigation {
-    margin-left: 50em;
+    margin-left: 68.8em;
 }
 
 .w3-bar .w3-bar-item .logo {
@@ -460,7 +471,11 @@ nav.w3-bar {
     padding-left: 62.5em;
 }
 
-/* about us css in home page */
+.expectations h3 {
+    margin-left: 3.5em;
+}
+
+/* about us button css in home page */
 
 .learn-more {
     position: relative;
@@ -477,10 +492,43 @@ nav.w3-bar {
 .learn-more-text {
     position: absolute;
     margin-left: 53em;
-    margin-top: 15em;
+    margin-top: 17em;
     text-align: center;
 }
 
-.learn-more-text h1, h2 {
+.learn-more-text h2, h3 {
     color: white;
+}
+
+.learn-more .learn-more-button {
+    position: absolute;
+    margin-left: 59.2em;
+    margin-top: 31.5em;
+}
+
+/* about us page css */
+
+.about-us{
+    position: relative;
+}
+
+.about-us-message {
+    position: absolute;
+    margin-left: 23em;
+    margin-top: 7em;
+    text-align: center;
+}
+
+.about-us-image img {
+    position: absolute;
+    margin-left: 58em;
+    margin-top: 6.5em;
+    width: 27em;
+    height: 18em;
+}
+/* Created in 2025 */
+.creation h5 {
+    color: white;
+    text-align: center;
+    margin-top: 33em;
 }
